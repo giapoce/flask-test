@@ -14,8 +14,10 @@ phases:
       - IMAGE_TAG=latest
   build:
     commands:
+      - echo listing files
+      - ls -lart
       - echo Building the Docker image...
-      - docker build -t $IMAGE_NAME /root
+      - docker build -t $IMAGE_NAME .
       - echo Build completed on `date`
   post_build:
     commands:
