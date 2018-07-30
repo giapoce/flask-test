@@ -23,7 +23,7 @@ def set_value():
 @app.route('/get')
 def get_value():
         try:
-            data = app.redis.get('total')
+            data = (app.redis.get('total')).decode('utf8')
         except redis.ConnectionError as e:
             return jsonify({"status": "redis connection error"})
         else:
@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
         env = os.getenv('ENV', 'production')
         if env == 'production':
-            app.run()
+            app.run(threaded=True,host='0.0.0.0',port=5000)
         elif env == 'development':
             app.run(host='0.0.0.0', debug=True)
         else:
