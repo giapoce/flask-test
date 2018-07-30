@@ -18,7 +18,9 @@ phases:
       - ls -lart
       - echo Building the Docker image...
       - docker build --help
-      - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+      - echo $IMAGE_NAME
+      - echo $IMAGE_TAG
+      - docker build -t "$IMAGE_NAME:$IMAGE_TAG" .
       - echo Build completed on `date`
   post_build:
     commands:
