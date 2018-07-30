@@ -17,6 +17,7 @@ phases:
       - echo listing files
       - ls -lart
       - echo Building the Docker image...
+      - docker build --help
       - docker build -t $IMAGE_NAME .
       - echo Build completed on `date`
   post_build:
