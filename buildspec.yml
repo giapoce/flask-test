@@ -22,5 +22,5 @@ phases:
       - echo Pushing image
       - docker push 426132435523.dkr.ecr.eu-west-1.amazonaws.com/ecs-alb-with-flask/home:latest
       - printf '[{"name":"","imageUri":"%s"}]' 426132435523.dkr.ecr.eu-west-1.amazonaws.com:$(date +%Y%m%d)-latest > imagedefinitions.json
-  artifacts:
-    files: imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
