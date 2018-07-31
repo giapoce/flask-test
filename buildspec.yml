@@ -8,19 +8,18 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR.
-      - AWS_REGION=eu-west-1
       - $(aws ecr get-login --region $AWS_REGION --no-include-email)
   build:
     commands:
       - echo listing files
       - ls -lart
       - echo Building the Docker image...
-      - docker build -t 426132435523.dkr.ecr.eu-west-1.amazonaws.com/ecs-alb-with-flask/home:latest .
+      - docker build -t $REPO_URI:latest .
       - echo Build completed on `date`
   post_build:
     commands:
       - echo Pushing image
-      - docker push 426132435523.dkr.ecr.eu-west-1.amazonaws.com/ecs-alb-with-flask/home:latest
-      - printf '[{"name":"flask-webapp-c","imageUri":"%s"}]' 426132435523.dkr.ecr.eu-west-1.amazonaws.com/ecs-alb-with-flask/home:latest > imagedefinitions.json
+      - docker push $REPO_URI:latest
+      - printf '[{"name":"flask-webapp-c","imageUri":"%s"}]' $REPO_URI:latest > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
