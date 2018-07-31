@@ -34,8 +34,7 @@ if __name__ == "__main__":
 
         env = os.getenv('ENV', 'production')
         if env == 'production':
-            print(os.getenv(REDIS_HOST))
-            print(os.getenv(ENV))
+            print(os.getenv('REDIS_HOST'))
             app.run(threaded=True,host='0.0.0.0',port=5000)
         elif env == 'development':
             app.run(host='0.0.0.0', debug=True)
