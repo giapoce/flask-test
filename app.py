@@ -21,7 +21,7 @@ def set_value():
             return jsonify({"status": "ok"})
 
 @app.route('/reset', methods=['POST'])
-def set_value():
+def reset_value():
         try:
             app.redis.set('total',0)
         except redis.ConnectionError as e:
