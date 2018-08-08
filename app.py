@@ -20,6 +20,15 @@ def set_value():
         else:
             return jsonify({"status": "ok"})
 
+@app.route('/reset', methods=['POST'])
+def set_value():
+        try:
+            app.redis.set('total',0)
+        except redis.ConnectionError as e:
+            return jsonify({"status": "redis connection error"})
+        else:
+            return jsonify({"status": "ok"})
+
 @app.route('/get')
 def get_value():
         try:
